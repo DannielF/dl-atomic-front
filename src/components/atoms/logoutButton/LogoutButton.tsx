@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './LogoutButton.module.scss';
+import styles from './LogoutButton.module.css';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const classCss = `btn btn-warning ${styles.logout_button}`;
+const classCss = `btn btn-warning ${styles.button__logout}`;
 
 const LogoutButton = () => {
   const { logout } = useAuth0();

@@ -1,8 +1,7 @@
-import React from 'react';
-import styles from './LoginButton.module.css';
 import { useAuth0 } from '@auth0/auth0-react';
+import styles from './LoginButton.module.css';
 
-const classCss = `btn btn-primary ${styles.login_button}`;
+const classCss = `btn btn-primary ${styles.button__login}`;
 
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
@@ -11,7 +10,13 @@ const LoginButton = () => {
     <button
       type="button"
       className={classCss}
-      onClick={() => loginWithRedirect()}
+      onClick={() =>
+        loginWithRedirect({
+          appState: {
+            target: ''
+          }
+        })
+      }
     >
       Log In
     </button>

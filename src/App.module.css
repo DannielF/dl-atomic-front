@@ -15,6 +15,11 @@
     font-weight: 400;
 }
 
-.homeLogin button {
-    margin-block: 3rem;
+.homeLogin button:nth-child(2) {
+    margin-block-start: 3rem;
+}
+
+.homeLogin button:nth-child(3) {
+    margin-block-start: 1rem;
+    margin-block-end: 2rem;
 }
