@@ -1,6 +1,6 @@
 export interface Transaction {
   transactionId?: string;
-  date: Date;
+  date: string;
   from: string;
   to: string;
   quantity: number;
