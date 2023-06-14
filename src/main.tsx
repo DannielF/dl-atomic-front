@@ -8,6 +8,8 @@ import './index.css';
 const authConfig = {
   domain: import.meta.env.AUTH0_DOMAIN,
   clientId: import.meta.env.AUTH0_CLIENT_ID,
+  useRefreshTokens: true,
+  useRefreshTokensCallBack: false,
   authorizationParams: {
     redirect_uri: window.location.origin
   }
