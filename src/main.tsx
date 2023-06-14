@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import { Auth0Provider } from '@auth0/auth0-react';
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 
 const authConfig = {
@@ -14,8 +15,10 @@ const authConfig = {
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Auth0Provider {...authConfig}>
-      <App />
-    </Auth0Provider>
+    <BrowserRouter>
+      <Auth0Provider {...authConfig}>
+        <App />
+      </Auth0Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
