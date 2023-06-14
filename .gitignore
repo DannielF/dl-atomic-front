@@ -2,6 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=react,git,linux,visualstudiocode,dotenv
 
 ### dotenv ###
+.env
 .env.*
 !.env.example
 
