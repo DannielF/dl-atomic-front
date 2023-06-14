@@ -1,16 +1,12 @@
+import { Route, Routes } from 'react-router-dom';
 import styles from './App.module.css';
-import LoginButton from './components/atoms/loginButton/LoginButton';
-import { SignupButton } from './components/atoms/signupButton/SignupButton';
-
-const classCss = `${styles.homeLogin}`;
+import { Home } from './components/pages/home/Home';
 
 function App() {
   return (
-    <main className={classCss}>
-      <h2>WalletApp</h2>
-      <LoginButton />
-      <SignupButton />
-    </main>
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>
   );
 }
 
