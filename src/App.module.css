@@ -10,7 +10,11 @@
 }
 
 .homeLogin h2 {
-    margin-block-start: 2rem;
+    margin-block-start: 3rem;
     font-size: 3rem;
     font-weight: 400;
+}
+
+.homeLogin button {
+    margin-block: 3rem;
 }

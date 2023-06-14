@@ -1,5 +1,5 @@
 import styles from './App.module.css';
-import LoginButton from './components/atoms/LoginButton';
+import LoginButton from './components/atoms/loginButton/LoginButton';
 
 const classCss = `${styles.homeLogin}`;
 
