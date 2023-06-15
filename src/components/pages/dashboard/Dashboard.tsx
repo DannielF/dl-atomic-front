@@ -1,6 +1,6 @@
 import React from 'react';
 import { CardClient } from '../../organisms/cardClient/CardClient';
-import styles from './Dashboard.module.css';
+import styles from './dashboard.module.css';
 
 const classCss = `${styles.dashboard__page}`;
 

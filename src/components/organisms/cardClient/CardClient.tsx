@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './CardClient.module.scss';
+import styles from './CardClient.module.css';
 import { CardBody } from '../../molecules/cardBody/CardBody';
 
 const classCss = `card ${styles.card__client}`;
