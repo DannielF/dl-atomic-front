@@ -1,10 +1,10 @@
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Client } from '../../domain/entities/Client';
 import {
   Transaction,
   TransactionType
 } from '../../domain/entities/Transaction';
-import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getClientByEmail } from '../../services/WalletApi';
+import { createWallet, getClientByEmail } from '../../services/WalletApi';
 import { RootState } from '../store/Store';
 
 export interface WalletState {
@@ -19,7 +19,6 @@ const initialState: WalletState = {
   client: {
     clientId: '',
     email: '',
-    documentId: '',
     balance: 0
   },
   clients: [],
@@ -42,12 +41,28 @@ export const clientWallet = createAsyncThunk(
   }
 );
 
+export const createClientWallet = createAsyncThunk(
+  'wallet/create',
+  async (email: string) => {
+    return await createWallet(email);
+  }
+);
+
 export const walletSlice = createSlice({
   name: 'wallet',
   initialState,
   reducers: {
     setClient: (state, action: PayloadAction<Client>) => {
       state.client = action.payload;
+    },
+    setClients: (state, action: PayloadAction<Client[]>) => {
+      state.clients = action.payload;
+    },
+    setTransaction: (state, action: PayloadAction<Transaction>) => {
+      state.transaction = action.payload;
+    },
+    setTransactions: (state, action: PayloadAction<Transaction[]>) => {
+      state.transactions = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -58,12 +73,25 @@ export const walletSlice = createSlice({
       .addCase(clientWallet.fulfilled, (state, action) => {
         state.status = 'idle';
         state.client = action.payload;
+      })
+      .addCase(createClientWallet.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(createClientWallet.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.client = action.payload;
       });
   }
 });
 
-export const { setClient } = walletSlice.actions;
+export const { setClient, setClients, setTransaction, setTransactions } =
+  walletSlice.actions;
 
 export const selectClientWallet = (state: RootState) => state.wallet.client;
+export const selectClientsWallet = (state: RootState) => state.wallet.clients;
+export const selectTransactionWallet = (state: RootState) =>
+  state.wallet.transaction;
+export const selectTransactionsWallet = (state: RootState) =>
+  state.wallet.transactions;
 
 export default walletSlice.reducer;
