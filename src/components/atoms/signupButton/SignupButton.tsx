@@ -9,7 +9,7 @@ export const SignupButton = () => {
   const handleSignUp = async () => {
     await loginWithRedirect({
       appState: {
-        returnTo: '/'
+        returnTo: '/dashboard'
       },
       authorizationParams: {
         screen_hint: 'signup'

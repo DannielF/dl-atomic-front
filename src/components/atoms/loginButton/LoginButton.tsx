@@ -13,7 +13,7 @@ const LoginButton = () => {
       onClick={() =>
         loginWithRedirect({
           appState: {
-            target: ''
+            target: '/dashboard'
           }
         })
       }
