@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
+import { Auth0ProviderWithRedirectCallback } from './config/AuthProviderWithNavigate.tsx';
 import './index.css';
-import { Auth0ProviderWithRedirectCallback } from './shared/AuthProviderWithNavigate.tsx';
 
 const authConfig = {
   domain: import.meta.env.AUTH_DOMAIN,
