@@ -12,6 +12,7 @@ export const SignupButton = () => {
         returnTo: '/dashboard'
       },
       authorizationParams: {
+        audience: import.meta.env.VITE_API_AUDIENCE,
         screen_hint: 'signup'
       }
     });

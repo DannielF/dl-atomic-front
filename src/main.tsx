@@ -6,12 +6,12 @@ import { Auth0ProviderWithRedirectCallback } from './config/AuthProviderWithNavi
 import './index.css';
 
 const authConfig = {
-  domain: import.meta.env.AUTH_DOMAIN,
-  clientId: import.meta.env.AUTH_CLIENT_ID,
+  domain: import.meta.env.VITE_AUTH_DOMAIN,
+  clientId: import.meta.env.VITE_AUTH_CLIENT_ID,
   useRefreshTokens: true,
   useRefreshTokensCallBack: false,
   authorizationParams: {
-    audience: import.meta.env.AUTH_AUDIENCE,
+    audience: import.meta.env.VITE_API_AUDIENCE,
     redirect_uri: window.location.origin
   }
 };
