@@ -1,10 +1,12 @@
 import React from 'react';
 import styles from './CardClient.module.css';
 import { CardBody } from '../../molecules/cardBody/CardBody';
+import { useAppSelector } from '../../../shared/store/hooks';
 
 const classCss = `card ${styles.card__client}`;
 
 export const CardClient = () => {
+  const client = useAppSelector((state) => state.wallet.client);
   return (
     <div className={classCss}>
       <img
@@ -12,8 +14,8 @@ export const CardClient = () => {
         className="card-img-top"
         alt="Digital wallet logo"
       />
-      <CardBody title="Email:" text="email1@email.com" />
-      <CardBody title="Balance:" text="123456789" />
+      <CardBody title="Email:" text={client.email} />
+      <CardBody title="Balance:" text={`$$ ${client.balance}`} />
     </div>
   );
 };
