@@ -8,17 +8,16 @@ export const ListAnchor = ({
   linkName: string;
   linkRoute: string;
 }) => {
-  const classCssLink = `nav-link`;
+  const classCssLink = `nav-link btn btn-outline-warning`;
 
   return (
     <li className="nav-item" role="presentation">
       <Link
         className={classCssLink}
-        aria-current="true"
-        to={linkRoute}
+        aria-current="page"
         id={`${linkName}-tab`}
-        data-bs-toggle="tab"
-        data-bs-target={`#${linkName}`}
+        to={linkRoute}
+        aria-controls={linkName}
         role="tab"
       >
         {linkName}

@@ -9,11 +9,7 @@ export const FeaturesWallet = () => {
   return (
     <div className={classCss}>
       <div className="card-header">
-        <ul
-          className="nav nav-tabs card-header-tabs"
-          id="tabFeatures"
-          role="tablist"
-        >
+        <ul className="nav nav-fill" id="tabFeatures" role="tablist">
           <ListAnchor
             linkRoute="/dashboard/transactions"
             linkName="Transactions"
