@@ -13,9 +13,7 @@ export const TableClients = () => {
           <th scope="col">Balance</th>
         </tr>
       </thead>
-      <tbody className="table-group-divider">
-        <TbodyClients props={clients} />
-      </tbody>
+      <TbodyClients props={clients} />
     </table>
   );
 };

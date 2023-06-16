@@ -15,9 +15,7 @@ export const TableTransactions = () => {
           <th scope="col">Date</th>
         </tr>
       </thead>
-      <tbody className="table-group-divider">
-        <TbodyTransactions props={transactions} />
-      </tbody>
+      <TbodyTransactions props={transactions} />
     </table>
   );
 };

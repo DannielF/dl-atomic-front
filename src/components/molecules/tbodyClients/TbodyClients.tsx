@@ -10,16 +10,22 @@ export const TbodyClients = ({ props }: { props: Client[] }) => {
   };
 
   return (
-    <>
-      {props.map((client: Client) => (
-        <tr key={client.clientId}>
-          <td>{client.email}</td>
-          <td>{client.balance}</td>
-          <td>
-            <button onClick={() => handleTransfer(client)}>Transfer</button>
-          </td>
+    <tbody className="table-group-divider">
+      {props.length > 1 ? (
+        props.map((client: Client) => (
+          <tr key={client.clientId}>
+            <td>{client.email}</td>
+            <td>{client.balance}</td>
+            <td>
+              <button onClick={() => handleTransfer(client)}>Transfer</button>
+            </td>
+          </tr>
+        ))
+      ) : (
+        <tr>
+          <td></td>
         </tr>
-      ))}
-    </>
+      )}
+    </tbody>
   );
 };
