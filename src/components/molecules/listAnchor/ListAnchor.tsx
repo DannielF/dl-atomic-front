@@ -8,20 +8,18 @@ export const ListAnchor = ({
   linkName: string;
   linkRoute: string;
 }) => {
-  const [isActive, setIsActive] = React.useState(false);
-
-  const handleClick = () => {
-    setIsActive((current) => !current);
-  };
-  const classCssLink = `nav-link ${isActive ? 'active' : ''}`;
+  const classCssLink = `nav-link`;
 
   return (
-    <li className="nav-item">
+    <li className="nav-item" role="presentation">
       <Link
         className={classCssLink}
         aria-current="true"
         to={linkRoute}
-        onClick={handleClick}
+        id={`${linkName}-tab`}
+        data-bs-toggle="tab"
+        data-bs-target={`#${linkName}`}
+        role="tab"
       >
         {linkName}
       </Link>
