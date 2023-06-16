@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './CardClient.module.css';
 import { CardBody } from '../../molecules/cardBody/CardBody';
 import { useAppSelector } from '../../../shared/store/hooks';
+import LogoutButton from '../../atoms/logoutButton/LogoutButton';
 
 const classCss = `card ${styles.card__client}`;
 
@@ -16,6 +17,7 @@ export const CardClient = () => {
       />
       <CardBody title="Email:" text={client.email} />
       <CardBody title="Balance:" text={`$$ ${client.balance}`} />
+      <LogoutButton />
     </div>
   );
 };
