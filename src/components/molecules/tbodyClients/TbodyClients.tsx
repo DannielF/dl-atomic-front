@@ -11,7 +11,7 @@ export const TbodyClients = ({ props }: { props: Client[] }) => {
 
   return (
     <tbody className="table-group-divider">
-      {props.length > 1 ? (
+      {props.length > 0 ? (
         props.map((client: Client) => (
           <tr key={client.clientId}>
             <td>{client.email}</td>

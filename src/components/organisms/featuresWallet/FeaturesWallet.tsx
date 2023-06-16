@@ -1,10 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { ListAnchor } from '../../molecules/listAnchor/ListAnchor';
+import styles from './featureWallet.module.css';
+
+const classCss = `card text-center ${styles.feature__wallet}`;
 
 export const FeaturesWallet = () => {
   return (
-    <div className="card text-center">
+    <div className={classCss}>
       <div className="card-header">
         <ul className="nav nav-tabs card-header-tabs">
           <ListAnchor
