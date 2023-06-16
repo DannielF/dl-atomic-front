@@ -67,7 +67,7 @@ export const walletSlice = createSlice({
       })
       .addCase(makeTransferWallet.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.transaction = action.payload;
+        state.transactions.push(action.payload);
       });
   }
 });
