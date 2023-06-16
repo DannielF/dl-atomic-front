@@ -1,17 +1,21 @@
 import React from 'react';
+import { TbodyClients } from '../../molecules/tbodyClients/TbodyClients';
+import { useAppSelector } from '../../../shared/store/hooks';
 
 export const TableClient = () => {
+  const clients = useAppSelector((state) => state.wallet.clients);
+
   return (
     <table className="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col">Email</th>
+          <th scope="col">Balance</th>
         </tr>
       </thead>
-      <tbody className="table-group-divider"></tbody>
+      <tbody className="table-group-divider">
+        <TbodyClients props={clients} />
+      </tbody>
     </table>
   );
 };
