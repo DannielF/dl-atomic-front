@@ -4,6 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
 import { Auth0ProviderWithRedirectCallback } from './config/AuthProviderWithNavigate.tsx';
 import './index.css';
+import { Provider } from 'react-redux';
+import { store } from './shared/store/Store.ts';
 
 const authConfig = {
   domain: import.meta.env.VITE_AUTH_DOMAIN,
@@ -20,7 +22,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <Auth0ProviderWithRedirectCallback {...authConfig}>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </Auth0ProviderWithRedirectCallback>
     </BrowserRouter>
   </React.StrictMode>

@@ -6,12 +6,14 @@ import {
 } from '../../domain/entities/Transaction';
 import { createWallet, getClientByEmail } from '../../services/WalletApi';
 import { RootState } from '../store/Store';
+import { ErrorApi } from '../../domain/entities/ErrorApi';
 
 export interface WalletState {
   client: Client;
   clients: Client[];
   transaction: Transaction;
   transactions: Transaction[];
+  error: ErrorApi;
   status: 'idle' | 'loading' | 'failed';
 }
 
@@ -31,6 +33,11 @@ const initialState: WalletState = {
     type: TransactionType.DEPOSIT
   },
   transactions: [],
+  error: {
+    statusCode: 0,
+    message: '',
+    path: ''
+  },
   status: 'idle'
 };
 
@@ -63,6 +70,9 @@ export const walletSlice = createSlice({
     },
     setTransactions: (state, action: PayloadAction<Transaction[]>) => {
       state.transactions = action.payload;
+    },
+    setError: (state, action: PayloadAction<ErrorApi>) => {
+      state.error = action.payload;
     }
   },
   extraReducers: (builder) => {
