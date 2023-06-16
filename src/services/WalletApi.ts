@@ -19,13 +19,18 @@ const GetAccessToken = async () => {
   }
 };
 
-export const getClients = async () => {
+const getHeaders = async () => {
   const token = await GetAccessToken();
+  return {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json'
+  };
+};
+
+export const getClients = async () => {
+  const headers = await getHeaders();
   return await fetch(`${API_URL}/clients`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    },
+    headers: headers,
     method: 'GET',
     mode: 'cors'
   })
@@ -34,12 +39,9 @@ export const getClients = async () => {
 };
 
 export const getClientByEmail = async (email: string) => {
-  const token = await GetAccessToken();
+  const headers = await getHeaders();
   return await fetch(`${API_URL}/client/email/${email}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    },
+    headers: headers,
     method: 'GET',
     mode: 'cors'
   })
@@ -48,12 +50,9 @@ export const getClientByEmail = async (email: string) => {
 };
 
 export const getTransactionsByClientId = async (clientId: string) => {
-  const token = await GetAccessToken();
+  const headers = await getHeaders();
   return await fetch(`${API_URL}/transactions/${clientId}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    },
+    headers: headers,
     method: 'GET',
     mode: 'cors'
   })
@@ -62,12 +61,9 @@ export const getTransactionsByClientId = async (clientId: string) => {
 };
 
 export const makeTransfer = async (transaction: Transaction) => {
-  const token = await GetAccessToken();
+  const headers = await getHeaders();
   return await fetch(`${API_URL}/transfer`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    },
+    headers: headers,
     method: 'POST',
     mode: 'cors',
     body: JSON.stringify(transaction)
@@ -77,12 +73,9 @@ export const makeTransfer = async (transaction: Transaction) => {
 };
 
 export const createWallet = async (email: string) => {
-  const token = await GetAccessToken();
+  const headers = await getHeaders();
   return await fetch(API_URL, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    },
+    headers: headers,
     method: 'POST',
     mode: 'cors',
     body: JSON.stringify({ email: email })
