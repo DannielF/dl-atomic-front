@@ -13,12 +13,12 @@ const LoginButton = () => {
   const handleLogin = async () => {
     await loginWithRedirect({
       appState: {
-        target: '/dashboard'
+        target: 'dashboard'
       }
     });
+    const userEmail = user?.email ?? '';
+    dispatch(clientWallet(userEmail));
   };
-  const userEmail = user?.email ?? '';
-  dispatch(clientWallet(userEmail));
 
   return (
     <button type="button" className={classCss} onClick={handleLogin}>
