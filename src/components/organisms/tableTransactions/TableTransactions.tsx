@@ -1,17 +1,23 @@
 import React from 'react';
+import { TbodyTransactions } from '../../molecules/tbodyTransactions/TbodyTransactions';
+import { useAppSelector } from '../../../shared/store/hooks';
 
 export const TableTransactions = () => {
+  const transactions = useAppSelector((state) => state.wallet.transactions);
   return (
     <table className="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col">Type</th>
+          <th scope="col">From</th>
+          <th scope="col">To</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Date</th>
         </tr>
       </thead>
-      <tbody className="table-group-divider"></tbody>
+      <tbody className="table-group-divider">
+        <TbodyTransactions props={transactions} />
+      </tbody>
     </table>
   );
 };
