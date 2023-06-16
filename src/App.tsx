@@ -5,6 +5,8 @@ import { Loading } from './components/molecules/loading/Loading';
 import { Dashboard } from './components/pages/dashboard/Dashboard';
 import { Home } from './components/pages/home/Home';
 import { AuthenticationGuard } from './guards/AuthenticationGuard';
+import { TableClients } from './components/organisms/tableClients/TableClients';
+import { TableTransactions } from './components/organisms/tableTransactions/TableTransactions';
 
 function App() {
   const { isLoading, error } = useAuth0();
@@ -21,7 +23,10 @@ function App() {
         <Route
           path="dashboard"
           element={<AuthenticationGuard component={() => <Dashboard />} />}
-        />
+        >
+          <Route path="clients" element={<TableClients />} />
+          <Route path="transactions" element={<TableTransactions />} />
+        </Route>
       </Routes>
     </>
   );

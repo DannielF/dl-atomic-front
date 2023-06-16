@@ -7,11 +7,8 @@ export const FeaturesWallet = () => {
     <div className="card text-center">
       <div className="card-header">
         <ul className="nav nav-tabs card-header-tabs">
-          <ListAnchor
-            linkRoute="/features/transactions"
-            linkName="Transactions"
-          />
-          <ListAnchor linkRoute="/features/transfer" linkName="Transfers" />
+          <ListAnchor linkRoute="/transactions" linkName="Transactions" />
+          <ListAnchor linkRoute="/clients" linkName="Transfers" />
         </ul>
       </div>
 

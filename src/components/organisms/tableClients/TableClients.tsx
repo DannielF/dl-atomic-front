@@ -2,7 +2,7 @@ import React from 'react';
 import { TbodyClients } from '../../molecules/tbodyClients/TbodyClients';
 import { useAppSelector } from '../../../shared/store/hooks';
 
-export const TableClient = () => {
+export const TableClients = () => {
   const clients = useAppSelector((state) => state.wallet.clients);
 
   return (
