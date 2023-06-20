@@ -1,5 +1,5 @@
 export interface ErrorApi {
-  statusCode: number;
-  message: string;
-  path: string;
+  statusCode?: number;
+  message?: string | undefined;
+  path?: string;
 }
