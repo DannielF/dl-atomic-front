@@ -9,7 +9,7 @@ export const SignupButton = () => {
   const handleSignUp = async () => {
     await loginWithRedirect({
       appState: {
-        returnTo: '/dashboard'
+        returnTo: '/createWallet'
       },
       authorizationParams: {
         audience: import.meta.env.VITE_API_AUDIENCE,

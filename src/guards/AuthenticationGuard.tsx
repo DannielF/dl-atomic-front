@@ -7,13 +7,15 @@ export const AuthenticationGuard = ({
 }: {
   component: React.ComponentType;
 }) => {
-  const Component = withAuthenticationRequired(component, {
+  const Component = withAuthenticationRequired(
+    component /* , {
     onRedirecting: () => (
       <div className="page-layout">
         <Loading />
       </div>
     )
-  });
+  } */
+  );
 
   return <Component />;
 };

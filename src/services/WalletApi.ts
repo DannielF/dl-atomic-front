@@ -64,11 +64,12 @@ export const makeTransfer = async (transaction: Transaction) => {
 
 export const createWallet = async (email: string) => {
   const headers = await getHeaders();
+  const body = { email: email };
   return await fetch(API_URL, {
     headers: headers,
     method: 'POST',
     mode: 'cors',
-    body: JSON.stringify({ email: email })
+    body: JSON.stringify(body)
   })
     .then((response) => response.json())
     .then((response: ResponseApi) => response.data)
