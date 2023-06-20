@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   getTransactionsWallet,
   getWallets
@@ -12,8 +13,10 @@ const classCss = `${styles.dashboard__page}`;
 export const Dashboard = () => {
   const dispatch = useAppDispatch();
   const clientWallet = useAppSelector((state) => state.wallet.client);
-  dispatch(getWallets());
-  dispatch(getTransactionsWallet(clientWallet.clientId ?? ''));
+  useEffect(() => {
+    dispatch(getWallets());
+    dispatch(getTransactionsWallet(clientWallet.clientId ?? ''));
+  }, [dispatch, clientWallet.clientId]);
   return (
     <main className={classCss}>
       <CardClient />

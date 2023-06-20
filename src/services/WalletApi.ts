@@ -20,7 +20,8 @@ export const getClients = async () => {
     mode: 'cors'
   })
     .then((response) => response.json())
-    .then((clients: Client[]) => clients);
+    .then((clients: Client[]) => clients)
+    .catch((error) => error);
 };
 
 export const getClientByEmail = async (email: string) => {
@@ -31,7 +32,8 @@ export const getClientByEmail = async (email: string) => {
     mode: 'cors'
   })
     .then((response) => response.json())
-    .then((client: Client) => client);
+    .then((client: Client) => client)
+    .catch((error) => error);
 };
 
 export const getTransactionsByClientId = async (clientId: string) => {
@@ -42,7 +44,8 @@ export const getTransactionsByClientId = async (clientId: string) => {
     mode: 'cors'
   })
     .then((response) => response.json())
-    .then((transactions: Transaction[]) => transactions);
+    .then((transactions: Transaction[]) => transactions)
+    .catch((error) => error);
 };
 
 export const makeTransfer = async (transaction: Transaction) => {
@@ -54,7 +57,8 @@ export const makeTransfer = async (transaction: Transaction) => {
     body: JSON.stringify(transaction)
   })
     .then((response) => response.json())
-    .then((transaction: Transaction) => transaction);
+    .then((transaction: Transaction) => transaction)
+    .catch((error) => error);
 };
 
 export const createWallet = async (email: string) => {
@@ -66,5 +70,6 @@ export const createWallet = async (email: string) => {
     body: JSON.stringify({ email: email })
   })
     .then((response) => response.json())
-    .then((client: Client) => client);
+    .then((client: Client) => client)
+    .catch((error) => error);
 };
