@@ -9,7 +9,6 @@ export const TableTransactions = () => {
       <thead>
         <tr>
           <th scope="col">Type</th>
-          <th scope="col">From</th>
           <th scope="col">To</th>
           <th scope="col">Quantity</th>
           <th scope="col">Date</th>
