@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import {
   getTransactionsWallet,
   getWallets
@@ -11,12 +10,11 @@ import styles from './dashboard.module.css';
 const classCss = `${styles.dashboard__page}`;
 
 export const Dashboard = () => {
-  const dispatch = useAppDispatch();
   const clientWallet = useAppSelector((state) => state.wallet.client);
-  useEffect(() => {
-    dispatch(getWallets());
-    dispatch(getTransactionsWallet(clientWallet.clientId ?? ''));
-  }, [dispatch, clientWallet.clientId]);
+  const dispatch = useAppDispatch();
+  dispatch(getWallets());
+  dispatch(getTransactionsWallet(clientWallet.clientId ?? ''));
+
   return (
     <main className={classCss}>
       <CardClient />

@@ -1,4 +1,5 @@
 import { Client } from '../domain/entities/Client';
+import { ResponseApi } from '../domain/entities/ResponseApi';
 import { Transaction } from '../domain/entities/Transaction';
 import { GetAccessToken } from './GetAccessTokenHook';
 
@@ -20,6 +21,7 @@ export const getClients = async () => {
     mode: 'cors'
   })
     .then((response) => response.json())
+    .then((response: ResponseApi) => response.data)
     .then((clients: Client[]) => clients);
 };
 
@@ -31,6 +33,7 @@ export const getClientByEmail = async (email: string) => {
     mode: 'cors'
   })
     .then((response) => response.json())
+    .then((response: ResponseApi) => response.data)
     .then((client: Client) => client);
 };
 
@@ -42,6 +45,7 @@ export const getTransactionsByClientId = async (clientId: string) => {
     mode: 'cors'
   })
     .then((response) => response.json())
+    .then((response: ResponseApi) => response.data)
     .then((transactions: Transaction[]) => transactions);
 };
 
@@ -54,6 +58,7 @@ export const makeTransfer = async (transaction: Transaction) => {
     body: JSON.stringify(transaction)
   })
     .then((response) => response.json())
+    .then((response: ResponseApi) => response.data)
     .then((transaction: Transaction) => transaction);
 };
 
@@ -66,5 +71,6 @@ export const createWallet = async (email: string) => {
     body: JSON.stringify({ email: email })
   })
     .then((response) => response.json())
+    .then((response: ResponseApi) => response.data)
     .then((client: Client) => client);
 };
