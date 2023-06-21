@@ -41,10 +41,6 @@ export const walletSlice = createSlice({
         state.status = 'idle';
         state.client = action.payload;
       })
-      .addCase(clientWallet.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error;
-      })
       .addCase(createClientWallet.pending, (state) => {
         state.status = 'loading';
       })

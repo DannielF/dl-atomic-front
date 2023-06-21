@@ -14,7 +14,6 @@ export const CreateWallet = () => {
 
   const handleCreateWallet = async () => {
     const userAuthEmail = user?.email;
-    console.log('handleCreateW', userAuthEmail);
     dispatch(createClientWallet(userAuthEmail ?? ''));
     navigate('/dashboard');
   };
