@@ -1,14 +1,17 @@
-import React from 'react';
-import { TbodyClients } from '../../molecules/tbodyClients/TbodyClients';
-import { useAppSelector } from '../../../shared/store/hooks';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../../shared/store/Store';
+import { useEffect } from 'react';
 import { getWallets } from '../../../shared/asyncThunks/AsyncThunks';
+import { selectClientsWallet } from '../../../shared/slice/WalletSlice';
+import { useAppDispatch, useAppSelector } from '../../../shared/store/hooks';
+import { TbodyClients } from '../../molecules/tbodyClients/TbodyClients';
 
 export const TableClients = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  dispatch(getWallets());
-  const clients = useAppSelector((state) => state.wallet.clients);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getWallets());
+  }, [dispatch]);
+
+  const clients = useAppSelector(selectClientsWallet);
 
   return (
     <table className="table">

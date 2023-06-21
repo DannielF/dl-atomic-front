@@ -1,8 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createClientWallet } from '../../../shared/asyncThunks/AsyncThunks';
-import { AppDispatch } from '../../../shared/store/Store';
+import { useAppDispatch } from '../../../shared/store/hooks';
 import styles from './createWallet.module.css';
 
 const classCss = `${styles.createWallet__page}`;
@@ -10,7 +9,7 @@ const classCss = `${styles.createWallet__page}`;
 export const CreateWallet = () => {
   const { user } = useAuth0();
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   const handleCreateWallet = async () => {
     const userAuthEmail = user?.email;
