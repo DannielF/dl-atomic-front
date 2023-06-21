@@ -8,7 +8,7 @@ export const AuthenticationGuard = ({
   component: React.ComponentType;
 }) => {
   const Component = withAuthenticationRequired(
-    component /* , {
+    component /*  , {
     onRedirecting: () => (
       <div className="page-layout">
         <Loading />

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { getWallets } from '../../../shared/asyncThunks/AsyncThunks';
 import { selectClientsWallet } from '../../../shared/slice/WalletSlice';
 import { useAppDispatch, useAppSelector } from '../../../shared/store/hooks';
@@ -12,7 +12,6 @@ export const TableClients = () => {
   }, [dispatch]);
 
   const clients = useAppSelector(selectClientsWallet);
-
   return (
     <table className="table">
       <thead>

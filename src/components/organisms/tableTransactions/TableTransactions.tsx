@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { getTransactionsWallet } from '../../../shared/asyncThunks/AsyncThunks';
 import {
   selectClientWallet,
@@ -13,7 +13,7 @@ export const TableTransactions = () => {
 
   useEffect(() => {
     dispatch(getTransactionsWallet(client.clientId ?? ''));
-  }, [dispatch, client.clientId]);
+  }, [client.clientId, dispatch]);
 
   const transactions = useAppSelector(selectTransactionsWallet);
   return (

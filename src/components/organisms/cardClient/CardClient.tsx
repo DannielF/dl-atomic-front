@@ -1,23 +1,23 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import React from 'react';
+import { useEffect } from 'react';
 import { clientWallet } from '../../../shared/asyncThunks/AsyncThunks';
+import { selectClientWallet } from '../../../shared/slice/WalletSlice';
 import { useAppDispatch, useAppSelector } from '../../../shared/store/hooks';
 import LogoutButton from '../../atoms/logoutButton/LogoutButton';
 import { CardBody } from '../../molecules/cardBody/CardBody';
 import styles from './CardClient.module.css';
-import { selectClientWallet } from '../../../shared/slice/WalletSlice';
 
 const classCss = `card ${styles.card__client}`;
 
 export const CardClient = () => {
   const { user } = useAuth0();
+  const client = useAppSelector(selectClientWallet);
   const dispatch = useAppDispatch();
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(clientWallet(user?.email ?? ''));
-  }, [dispatch, user?.email]);
+  }, [user?.email, dispatch]);
 
-  const client = useAppSelector(selectClientWallet);
   return (
     <div className={classCss}>
       <img

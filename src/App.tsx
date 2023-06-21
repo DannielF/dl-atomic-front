@@ -17,9 +17,6 @@ function App() {
     return <Loading />;
   }
 
-  const MemoizedCreateWallet = React.memo(CreateWallet);
-  const MemoizedDashboard = React.memo(Dashboard);
-
   return (
     <>
       {error && <Error message={error.message} />}
@@ -27,11 +24,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="createWallet"
-          element={<AuthenticationGuard component={MemoizedCreateWallet} />}
+          element={<AuthenticationGuard component={CreateWallet} />}
         />
         <Route
           path="dashboard"
-          element={<AuthenticationGuard component={MemoizedDashboard} />}
+          element={<AuthenticationGuard component={Dashboard} />}
         >
           <Route path="clients" element={<TableClients />} />
           <Route path="transactions" element={<TableTransactions />} />
