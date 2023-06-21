@@ -11,9 +11,9 @@ export const CreateWallet = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const handleCreateWallet = async () => {
-    const userAuthEmail = user?.email;
-    dispatch(createClientWallet(userAuthEmail ?? ''));
+  const handleCreateWallet = () => {
+    console.debug('Create Wallet', user?.email);
+    dispatch(createClientWallet(user?.email ?? ''));
     navigate('/dashboard');
   };
 
