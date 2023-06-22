@@ -12,7 +12,6 @@ const classCss = `card ${styles.card__client}`;
 
 export const CardClient = () => {
   const { user, getAccessTokenSilently } = useAuth0();
-  const client = useAppSelector(selectClientWallet);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -26,7 +25,9 @@ export const CardClient = () => {
       }
     };
     dispatchClientWallet(user?.email ?? '');
-  }, [user?.email, dispatch, getAccessTokenSilently]);
+  }, [dispatch, user?.email, getAccessTokenSilently]);
+
+  const client = useAppSelector(selectClientWallet);
 
   return (
     <div className={classCss}>

@@ -12,7 +12,7 @@ const LoginButton = () => {
         audience: import.meta.env.VITE_API_AUDIENCE
       },
       appState: {
-        target: '/dashboard'
+        returnTo: '/dashboard/transactions'
       }
     });
   };
