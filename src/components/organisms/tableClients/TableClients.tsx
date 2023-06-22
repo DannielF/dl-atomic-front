@@ -2,7 +2,10 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useEffect } from 'react';
 import { getAuthParams } from '../../../services/GetAuthParams';
 import { getWallets } from '../../../shared/asyncThunks/AsyncThunks';
-import { selectClientsWallet } from '../../../shared/slice/WalletSlice';
+import {
+  selectClientWallet,
+  selectClientsWallet
+} from '../../../shared/slice/WalletSlice';
 import { useAppDispatch, useAppSelector } from '../../../shared/store/hooks';
 import { TbodyClients } from '../../molecules/tbodyClients/TbodyClients';
 
@@ -23,7 +26,12 @@ export const TableClients = () => {
     dispatchGetWallets();
   }, [dispatch, getAccessTokenSilently]);
 
+  const userWallet = useAppSelector(selectClientWallet);
   const clients = useAppSelector(selectClientsWallet);
+  const filterClients = clients.filter(
+    (client) => client.clientId !== userWallet.clientId
+  );
+
   return (
     <table className="table">
       <thead>
@@ -32,7 +40,7 @@ export const TableClients = () => {
           <th scope="col">Balance</th>
         </tr>
       </thead>
-      <TbodyClients props={clients} />
+      <TbodyClients props={{ clients: filterClients, wallet: userWallet }} />
     </table>
   );
 };
