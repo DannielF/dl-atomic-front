@@ -8,8 +8,11 @@ const LoginButton = () => {
 
   const handleLogin = async () => {
     await loginWithRedirect({
+      authorizationParams: {
+        audience: import.meta.env.VITE_API_AUDIENCE
+      },
       appState: {
-        target: 'dashboard'
+        target: '/dashboard'
       }
     });
   };

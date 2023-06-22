@@ -8,12 +8,12 @@ export const SignupButton = () => {
 
   const handleSignUp = async () => {
     await loginWithRedirect({
-      appState: {
-        returnTo: '/createWallet'
-      },
       authorizationParams: {
         audience: import.meta.env.VITE_API_AUDIENCE,
         screen_hint: 'signup'
+      },
+      appState: {
+        returnTo: '/createWallet'
       }
     });
   };
