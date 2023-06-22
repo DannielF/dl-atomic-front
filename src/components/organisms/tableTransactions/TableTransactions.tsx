@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useEffect } from 'react';
+import { getAuthParams } from '../../../services/GetAuthParams';
 import { getTransactionsWallet } from '../../../shared/asyncThunks/AsyncThunks';
 import {
   selectClientWallet,
@@ -8,12 +10,27 @@ import { useAppDispatch, useAppSelector } from '../../../shared/store/hooks';
 import { TbodyTransactions } from '../../molecules/tbodyTransactions/TbodyTransactions';
 
 export const TableTransactions = () => {
+  const { getAccessTokenSilently } = useAuth0();
   const client = useAppSelector(selectClientWallet);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getTransactionsWallet(client.clientId ?? ''));
-  }, [client.clientId, dispatch]);
+    const dispatchGetTransactionsWallet = async () => {
+      try {
+        const params = getAuthParams();
+        const token = await getAccessTokenSilently(params);
+        dispatch(
+          getTransactionsWallet({
+            clientId: client.clientId ?? '',
+            token: token ?? ''
+          })
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    dispatchGetTransactionsWallet();
+  }, [client.clientId, dispatch, getAccessTokenSilently]);
 
   const transactions = useAppSelector(selectTransactionsWallet);
   return (

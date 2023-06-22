@@ -1,5 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useEffect } from 'react';
+import { getAuthParams } from '../../../services/GetAuthParams';
 import { clientWallet } from '../../../shared/asyncThunks/AsyncThunks';
 import { selectClientWallet } from '../../../shared/slice/WalletSlice';
 import { useAppDispatch, useAppSelector } from '../../../shared/store/hooks';
@@ -10,13 +11,22 @@ import styles from './CardClient.module.css';
 const classCss = `card ${styles.card__client}`;
 
 export const CardClient = () => {
-  const { user } = useAuth0();
+  const { user, getAccessTokenSilently } = useAuth0();
   const client = useAppSelector(selectClientWallet);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(clientWallet(user?.email ?? ''));
-  }, [user?.email, dispatch]);
+    const dispatchClientWallet = async (email: string) => {
+      try {
+        const params = getAuthParams();
+        const token = await getAccessTokenSilently(params);
+        dispatch(clientWallet({ email, token: token ?? '' }));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    dispatchClientWallet(user?.email ?? '');
+  }, [user?.email, dispatch, getAccessTokenSilently]);
 
   return (
     <div className={classCss}>

@@ -1,5 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
+import { getAuthParams } from '../../../services/GetAuthParams';
 import { createClientWallet } from '../../../shared/asyncThunks/AsyncThunks';
 import { useAppDispatch } from '../../../shared/store/hooks';
 import styles from './createWallet.module.css';
@@ -7,13 +8,21 @@ import styles from './createWallet.module.css';
 const classCss = `${styles.createWallet__page}`;
 
 export const CreateWallet = () => {
-  const { user } = useAuth0();
+  const { user, getAccessTokenSilently } = useAuth0();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleCreateWallet = () => {
-    console.debug('Create Wallet', user?.email);
-    dispatch(createClientWallet(user?.email ?? ''));
+    const dispatchCreateWallet = async (email: string) => {
+      try {
+        const params = getAuthParams();
+        const token = await getAccessTokenSilently(params);
+        dispatch(createClientWallet({ email, token: token ?? '' }));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    dispatchCreateWallet(user?.email ?? '');
     navigate('/dashboard');
   };
 

@@ -8,34 +8,43 @@ import {
   makeTransfer
 } from '../../services/WalletApi';
 
-export const getWallets = createAsyncThunk('wallet/clients', async () => {
-  return await getClients();
-});
+export const getWallets = createAsyncThunk(
+  'wallet/clients',
+  async (token: string) => {
+    return await getClients(token);
+  }
+);
 
 export const clientWallet = createAsyncThunk(
   'wallet/client',
-  async (email: string) => {
-    return await getClientByEmail(email);
+  async ({ email, token }: { email: string; token: string }) => {
+    return await getClientByEmail(email, token);
   }
 );
 
 export const getTransactionsWallet = createAsyncThunk(
   'wallet/transactions',
-  async (clientId: string) => {
-    return await getTransactionsByClientId(clientId);
+  async ({ clientId, token }: { clientId: string; token: string }) => {
+    return await getTransactionsByClientId(clientId, token);
   }
 );
 
 export const makeTransferWallet = createAsyncThunk(
   'wallet/transfer',
-  async (transaction: Transaction) => {
-    return await makeTransfer(transaction);
+  async ({
+    transaction,
+    token
+  }: {
+    transaction: Transaction;
+    token: string;
+  }) => {
+    return await makeTransfer(transaction, token);
   }
 );
 
 export const createClientWallet = createAsyncThunk(
   'wallet/create',
-  async (email: string) => {
-    return await createWallet(email);
+  async ({ email, token }: { email: string; token: string }) => {
+    return await createWallet(email, token);
   }
 );
