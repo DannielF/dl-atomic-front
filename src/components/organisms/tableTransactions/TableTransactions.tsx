@@ -9,6 +9,11 @@ import {
 import { useAppDispatch, useAppSelector } from '../../../shared/store/hooks';
 import { TbodyTransactions } from '../../molecules/tbodyTransactions/TbodyTransactions';
 
+/**
+ * @description Table transactions component
+ * @component
+ * @returns {ReactElement} React Element
+ */
 export const TableTransactions = () => {
   const { getAccessTokenSilently } = useAuth0();
   const client = useAppSelector(selectClientWallet);

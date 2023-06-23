@@ -1,5 +1,8 @@
-import React from 'react';
-
+/**
+ * @description Card body component
+ * @param {string} title - Card title
+ * @returns {ReactElement} React Element
+ */
 export const CardBody = ({ title, text }: { title: string; text: string }) => {
   return (
     <div className="card-body">

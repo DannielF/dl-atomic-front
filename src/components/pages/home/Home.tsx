@@ -4,6 +4,11 @@ import styles from './Home.module.css';
 
 const classCss = `${styles.homeLogin}`;
 
+/**
+ * @description Home component
+ * @component
+ * @returns {ReactElement} React Element
+ */
 export const Home = () => {
   return (
     <main className={classCss}>

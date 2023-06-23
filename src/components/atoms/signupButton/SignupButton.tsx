@@ -6,7 +6,7 @@ const classCss = `btn btn-secondary ${styles.button__sign_up}`;
 /**
  * @description SignUp button
  * @component
- * @returns {JSX.Element} JSX.Element
+ * @returns {ReactElement} React Element
  */
 export const SignupButton = () => {
   const { loginWithRedirect } = useAuth0();

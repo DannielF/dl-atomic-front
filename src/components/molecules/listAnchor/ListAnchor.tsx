@@ -1,6 +1,11 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
+/**
+ * @description List anchor component
+ * @param {string} linkName - Link name
+ * @param {string} linkRoute - Link route
+ * @returns {ReactElement} React Element
+ */
 export const ListAnchor = ({
   linkName,
   linkRoute

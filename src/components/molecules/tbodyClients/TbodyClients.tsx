@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { Client } from '../../../domain/entities/Client';
 import { FormTransfer } from '../formTransfer/FormTransfer';
 
+/**
+ * @description Tbody clients component
+ * @param {object} props - React props
+ * @returns {ReactElement} React Element
+ */
 export const TbodyClients = ({
   props
 }: {

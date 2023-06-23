@@ -1,10 +1,14 @@
-import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { ListAnchor } from '../../molecules/listAnchor/ListAnchor';
 import styles from './featureWallet.module.css';
 
 const classCss = `card text-center ${styles.feature__wallet}`;
 
+/**
+ * @description Features wallet component
+ * @component
+ * @returns {ReactElement} React Element
+ */
 export const FeaturesWallet = () => {
   return (
     <div className={classCss}>

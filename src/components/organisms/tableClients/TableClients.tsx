@@ -9,6 +9,11 @@ import {
 import { useAppDispatch, useAppSelector } from '../../../shared/store/hooks';
 import { TbodyClients } from '../../molecules/tbodyClients/TbodyClients';
 
+/**
+ * @description Table clients component
+ * @component
+ * @returns {ReactElement} React Element
+ */
 export const TableClients = () => {
   const { getAccessTokenSilently } = useAuth0();
   const dispatch = useAppDispatch();

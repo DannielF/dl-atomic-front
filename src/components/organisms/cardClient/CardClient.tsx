@@ -10,6 +10,11 @@ import styles from './CardClient.module.css';
 
 const classCss = `card ${styles.card__client}`;
 
+/**
+ * @description Card client component
+ * @component
+ * @returns {ReactElement} React Element
+ */
 export const CardClient = () => {
   const { user, getAccessTokenSilently } = useAuth0();
   const dispatch = useAppDispatch();

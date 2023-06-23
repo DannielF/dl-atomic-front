@@ -7,6 +7,11 @@ import styles from './createWallet.module.css';
 
 const classCss = `${styles.createWallet__page}`;
 
+/**
+ * @description Create wallet component
+ * @component
+ * @returns {ReactElement} React Element
+ */
 export const CreateWallet = () => {
   const { user, getAccessTokenSilently } = useAuth0();
   const navigate = useNavigate();

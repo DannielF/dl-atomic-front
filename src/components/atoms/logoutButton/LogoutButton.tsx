@@ -6,7 +6,7 @@ const classCss = `btn btn-warning ${styles.button__logout}`;
 /**
  * @description Logout button
  * @component
- * @returns {JSX.Element}
+ * @returns {ReactElement} ReactElement
  */
 const LogoutButton = () => {
   const { logout } = useAuth0();

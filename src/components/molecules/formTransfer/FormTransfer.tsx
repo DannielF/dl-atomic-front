@@ -13,6 +13,11 @@ type Inputs = {
   quantity: number;
 };
 
+/**
+ * @description Form to made a transfer
+ * @param {object} props - React props
+ * @returns {ReactElement} React Element
+ */
 export const FormTransfer = ({
   props
 }: {

@@ -6,7 +6,7 @@ const classCss = `btn btn-primary ${styles.button__login}`;
 /**
  * @description Login button
  * @component
- * @returns {JSX.Element} JSX.Element
+ * @returns {ReactElement} ReactElement
  */
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
