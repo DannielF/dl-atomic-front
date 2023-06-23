@@ -70,8 +70,12 @@ export const FormTransfer = ({
             aria-describedby="basic-addon3 basic-addon4"
             {...register('quantity', { required: true })}
           />
-          {errors.quantity && <p>Quantity is required</p>}
         </div>
+        {errors.quantity && (
+          <div className="mt-2 link-danger link-underline-opacity-25">
+            Quantity is required
+          </div>
+        )}
         <div className="form-text" id="basic-addon4">
           Example value: $100
         </div>
