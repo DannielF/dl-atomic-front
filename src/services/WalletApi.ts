@@ -103,7 +103,6 @@ export const makeTransfer = async (transaction: Transaction, token: string) => {
  * @async
  */
 export const createWallet = async (email: string, token: string) => {
-  const body = { email: email };
   return await fetch(API_URL, {
     headers: {
       authorization: `Bearer ${token}`,
@@ -111,7 +110,7 @@ export const createWallet = async (email: string, token: string) => {
     },
     method: 'POST',
     mode: 'cors',
-    body: JSON.stringify(body)
+    body: JSON.stringify({ email })
   })
     .then((response) => response.json())
     .then((response: ResponseApi) => response.data)
