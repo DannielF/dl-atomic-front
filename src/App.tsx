@@ -8,6 +8,7 @@ import { CreateWallet } from './components/pages/createWallet/CreateWallet';
 import { Dashboard } from './components/pages/dashboard/Dashboard';
 import { Home } from './components/pages/home/Home';
 import { AuthenticationGuard } from './guards/AuthenticationGuard';
+import { NotFound } from './components/pages/notFound/NotFound';
 
 function App() {
   const { isLoading, error } = useAuth0();
@@ -32,6 +33,7 @@ function App() {
           <Route path="clients" element={<TableClients />} />
           <Route path="transactions" element={<TableTransactions />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
