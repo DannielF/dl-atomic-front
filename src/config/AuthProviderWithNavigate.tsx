@@ -6,6 +6,11 @@ import {
 import { PropsWithChildren } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * @description Auth0Provider with redirect callback
+ * @param {PropsWithChildren<Auth0ProviderOptions>} props
+ * @returns {JSX.Element} JSX.Element
+ */
 export const Auth0ProviderWithRedirectCallback = ({
   children,
   ...props

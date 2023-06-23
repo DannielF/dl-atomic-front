@@ -12,6 +12,11 @@ import {
 import { RootState } from '../store/Store';
 import { initialState } from './InitialState';
 
+/**
+ * @description This is the wallet slice
+ * @returns {Slice} Returns the wallet slice
+ * @export
+ */
 export const walletSlice = createSlice({
   name: 'wallet',
   initialState,

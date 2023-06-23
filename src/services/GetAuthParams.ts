@@ -5,6 +5,11 @@ type AuthParams = {
   };
 };
 
+/**
+ * @description This is a function that is used to get the authorization params
+ * @returns {AuthParams} Returns the authorization params
+ * @export
+ */
 export const getAuthParams = (): AuthParams => {
   return {
     authorizationParams: {

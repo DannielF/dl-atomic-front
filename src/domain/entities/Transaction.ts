@@ -1,3 +1,9 @@
+/**
+ * @description This is the transaction interface
+ * @interface Transaction
+ * @export
+ * @author dannielf
+ */
 export interface Transaction {
   transactionId?: string;
   date?: string;
@@ -7,6 +13,12 @@ export interface Transaction {
   type: TransactionType;
 }
 
+/**
+ * @description This is the transaction type enum
+ * @enum {string} TransactionType
+ * @export
+ * @author dannielf
+ */
 export enum TransactionType {
   DEPOSIT = 'DEPOSIT',
   WITHDRAW = 'WITHDRAW',

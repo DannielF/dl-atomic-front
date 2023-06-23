@@ -1,6 +1,10 @@
 import { TransactionType } from '../../domain/entities/Transaction';
 import { WalletState } from './WalletState';
 
+/**
+ * @description This is the initial state for the wallet slice
+ * @returns {WalletState} Returns the initial state for the wallet slice
+ */
 export const initialState: WalletState = {
   client: {
     clientId: '',

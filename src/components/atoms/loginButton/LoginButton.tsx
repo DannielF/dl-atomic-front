@@ -3,6 +3,11 @@ import styles from './LoginButton.module.css';
 
 const classCss = `btn btn-primary ${styles.button__login}`;
 
+/**
+ * @description Login button
+ * @component
+ * @returns {JSX.Element} JSX.Element
+ */
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
