@@ -58,6 +58,11 @@ export const FormTransfer = ({
         <label htmlFor="basic-url" className="form-label">
           How much do you want to transfer?
         </label>
+        {errors.quantity && (
+          <div className="mt-2 mb-2 link-danger link-underline-opacity-25">
+            Quantity is required
+          </div>
+        )}
         <div className="input-group">
           <span className="input-group-text" id="basic-addon3">
             Quantity
@@ -70,11 +75,6 @@ export const FormTransfer = ({
             {...register('quantity', { required: true })}
           />
         </div>
-        {errors.quantity && (
-          <div className="mt-2 link-danger link-underline-opacity-25">
-            Quantity is required
-          </div>
-        )}
         <div className="form-text" id="basic-addon4">
           Example value: $100
         </div>
