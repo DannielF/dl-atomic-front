@@ -71,4 +71,7 @@ sketch
 .history
 .ionide
 
+## coverage
+coverage
+
 # End of https://www.toptal.com/developers/gitignore/api/react,git,linux,visualstudiocode,dotenv
