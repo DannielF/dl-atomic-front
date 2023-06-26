@@ -32,7 +32,10 @@ export const TbodyClients = ({
             <td>{client.email}</td>
             <td>{client.balance}</td>
             <td>
-              <button onClick={() => handleSelectClient(client)}>
+              <button
+                className="btn btn-success"
+                onClick={() => handleSelectClient(client)}
+              >
                 Transfer
               </button>
             </td>
