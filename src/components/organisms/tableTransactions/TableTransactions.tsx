@@ -26,7 +26,7 @@ export const TableTransactions = () => {
         const token = await getAccessTokenSilently(params);
         dispatch(
           getTransactionsWallet({
-            clientId: client.clientId ?? '',
+            clientId: client.email ?? '',
             token: token ?? ''
           })
         );
