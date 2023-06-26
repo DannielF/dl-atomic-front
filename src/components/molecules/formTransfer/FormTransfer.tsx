@@ -1,10 +1,8 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Client } from '../../../domain/entities/Client';
-import {
-  Transaction,
-  TransactionType
-} from '../../../domain/entities/Transaction';
+import { CreateTransaction } from '../../../domain/entities/CreateTransaction';
+import { TransactionType } from '../../../domain/entities/Transaction';
 import { getAuthParams } from '../../../services/GetAuthParams';
 import { makeTransferWallet } from '../../../shared/asyncThunks/AsyncThunks';
 import { useAppDispatch } from '../../../shared/store/hooks';
@@ -40,11 +38,12 @@ export const FormTransfer = ({
     try {
       const params = getAuthParams();
       const token = await getAccessTokenSilently(params);
-      const transaction: Transaction = {
-        from: props.userWallet.clientId ?? '',
-        to: props.client?.clientId ?? '',
+      const transaction: CreateTransaction = {
+        from: props.userWallet.email,
+        to: props.client?.email ?? '',
         quantity: data.quantity,
-        type: TransactionType.TRANSFER
+        type: TransactionType.TRANSFER,
+        clientId: props.userWallet.clientId ?? ''
       };
       dispatch(makeTransferWallet({ transaction, token: token ?? '' }));
       props.setState(false);

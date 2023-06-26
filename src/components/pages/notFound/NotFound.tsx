@@ -3,7 +3,7 @@ import styles from './notFound.module.css';
 import { useAuth0 } from '@auth0/auth0-react';
 
 export const NotFound = () => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
 
   return (
     <div className={styles.container__not_found}>
@@ -13,11 +13,12 @@ export const NotFound = () => {
           alt="not-found"
         />
       </figure>
-      {isAuthenticated ? (
+      {isAuthenticated && !isLoading && (
         <p>
           <Link to="/dashboard/transactions">Go to dashboard</Link>
         </p>
-      ) : (
+      )}
+      {!isAuthenticated && !isLoading && (
         <p>
           <Link to="/">Go to the home page</Link>
         </p>
