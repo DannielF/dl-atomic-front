@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
 import { Client } from '../../../domain/entities/Client';
 import { FormTransfer } from '../formTransfer/FormTransfer';
 
@@ -11,24 +11,24 @@ export const TbodyClients = ({
   props
 }: {
   props: { clients: Client[]; wallet: Client };
-}) => {
+}): ReactElement => {
   const [selectedClient, setSelectedClient] = useState<Client>();
   const [showForm, setShowForm] = useState<boolean>(false);
 
-  const handleSelectClient = (client: Client) => {
+  const handleSelectClient = (client: Client): void => {
     setSelectedClient(client);
     setShowForm(true);
   };
 
-  const handleCancel = () => {
+  const handleCancel = (): void => {
     setShowForm(false);
   };
 
   return (
-    <tbody className="table-group-divider">
+    <tbody className="table-group-divider" role="tbody">
       {!showForm && props.clients.length > 0 ? (
         props.clients.map((client: Client) => (
-          <tr key={client.clientId}>
+          <tr key={client.clientId} role="row">
             <td>{client.email}</td>
             <td>{client.balance}</td>
             <td>
