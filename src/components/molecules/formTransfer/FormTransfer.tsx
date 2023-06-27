@@ -6,6 +6,7 @@ import { TransactionType } from '../../../domain/entities/Transaction';
 import { getAuthParams } from '../../../services/GetAuthParams';
 import { makeTransferWallet } from '../../../shared/asyncThunks/AsyncThunks';
 import { useAppDispatch } from '../../../shared/store/hooks';
+import { ReactElement } from 'react';
 
 type Inputs = {
   quantity: number;
@@ -24,7 +25,7 @@ export const FormTransfer = ({
     client: Client | undefined;
     setState: React.Dispatch<React.SetStateAction<boolean>>;
   };
-}) => {
+}): ReactElement => {
   const { getAccessTokenSilently } = useAuth0();
   const dispatch = useAppDispatch();
 
@@ -34,7 +35,7 @@ export const FormTransfer = ({
     formState: { errors }
   } = useForm<Inputs>();
 
-  const handleTransfer: SubmitHandler<Inputs> = async (data) => {
+  const handleTransfer: SubmitHandler<Inputs> = async (data): Promise<void> => {
     try {
       const params = getAuthParams();
       const token = await getAccessTokenSilently(params);
