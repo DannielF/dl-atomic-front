@@ -1,9 +1,11 @@
+import { ReactElement } from 'react';
+
 /**
  * @description Loading auth component
  * @component
  * @returns {ReactElement} React Element
  */
-export const Loading = () => {
+export const Loading = (): ReactElement => {
   const loadingImg = 'https://cdn.auth0.com/blog/hello-auth0/loader.svg';
   return (
     <div className="text-center">
