@@ -1,3 +1,4 @@
+import { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 
 /**
@@ -12,7 +13,7 @@ export const ListAnchor = ({
 }: {
   linkName: string;
   linkRoute: string;
-}) => {
+}): ReactElement => {
   const classCssLink = `nav-link btn btn-outline-warning`;
 
   return (
