@@ -1,7 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { ReactElement } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Error } from './components/molecules/errorAuth/ErrorAuth';
+import { ErrorAuth } from './components/molecules/errorAuth/ErrorAuth';
 import { Loading } from './components/molecules/loading/Loading';
 import { TableClients } from './components/organisms/tableClients/TableClients';
 import { TableTransactions } from './components/organisms/tableTransactions/TableTransactions';
@@ -20,7 +20,7 @@ function App(): ReactElement {
 
   return (
     <>
-      {error && <Error message={error.message} />}
+      {error && <ErrorAuth message={error.message} />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
