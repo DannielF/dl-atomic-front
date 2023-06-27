@@ -11,14 +11,12 @@ const classCss = `btn btn-warning ${styles.button__logout}`;
 const LogoutButton = () => {
   const { logout } = useAuth0();
 
+  const handleLogout = (): void => {
+    logout({ logoutParams: { returnTo: window.location.origin } });
+  };
+
   return (
-    <button
-      type="button"
-      className={classCss}
-      onClick={() =>
-        logout({ logoutParams: { returnTo: window.location.origin } })
-      }
-    >
+    <button type="button" className={classCss} onClick={handleLogout}>
       Log Out
     </button>
   );

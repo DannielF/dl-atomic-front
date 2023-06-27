@@ -1,4 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react';
+import { ReactElement } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Error } from './components/molecules/errorAuth/ErrorAuth';
 import { Loading } from './components/molecules/loading/Loading';
@@ -7,10 +8,10 @@ import { TableTransactions } from './components/organisms/tableTransactions/Tabl
 import { CreateWallet } from './components/pages/createWallet/CreateWallet';
 import { Dashboard } from './components/pages/dashboard/Dashboard';
 import { Home } from './components/pages/home/Home';
-import { AuthenticationGuard } from './guards/AuthenticationGuard';
 import { NotFound } from './components/pages/notFound/NotFound';
+import { AuthenticationGuard } from './guards/AuthenticationGuard';
 
-function App() {
+function App(): ReactElement {
   const { isLoading, error } = useAuth0();
 
   if (isLoading) {
