@@ -35,7 +35,6 @@ describe('TbodyClients', () => {
 
   it('should render tr', () => {
     const tr = screen.getByRole('row');
-    screen.debug();
     expect(tr).toBeDefined();
   });
 

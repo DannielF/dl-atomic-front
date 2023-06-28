@@ -7,10 +7,10 @@ import { Transaction } from '../../../domain/entities/Transaction';
  */
 export const TbodyTransactions = ({ props }: { props: Transaction[] }) => {
   return (
-    <tbody className="table-group-divider">
+    <tbody className="table-group-divider" role="tbody">
       {props.length > 0 ? (
         props.map((transaction: Transaction) => (
-          <tr key={transaction.transactionId}>
+          <tr key={transaction.transactionId} role="row">
             <td>{transaction.type}</td>
             <td>{transaction.to}</td>
             <td>{transaction.quantity}</td>
@@ -19,7 +19,7 @@ export const TbodyTransactions = ({ props }: { props: Transaction[] }) => {
         ))
       ) : (
         <tr>
-          <td></td>
+          <></>
         </tr>
       )}
     </tbody>

@@ -24,7 +24,6 @@ describe('ListAnchor', () => {
 
   it('should render the ListAnchor component with the link', () => {
     const link = screen.getByRole('tab');
-    screen.debug();
     expect(link).toBeDefined();
     expect(link).toHaveProperty('id', `${props.linkName}-tab`);
     expect(link).toHaveProperty(
