@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { ListAnchor } from '../../molecules/listAnchor/ListAnchor';
 import styles from './featureWallet.module.css';
+import { ReactElement } from 'react';
 
 const classCss = `card text-center ${styles.feature__wallet}`;
 
@@ -9,10 +10,10 @@ const classCss = `card text-center ${styles.feature__wallet}`;
  * @component
  * @returns {ReactElement} React Element
  */
-export const FeaturesWallet = () => {
+export const FeaturesWallet = (): ReactElement => {
   return (
     <div className={classCss}>
-      <div className="card-header">
+      <div className="card-header" role="card-header">
         <ul className="nav nav-fill" id="tabFeatures" role="tablist">
           <ListAnchor
             linkRoute="/dashboard/transactions"
