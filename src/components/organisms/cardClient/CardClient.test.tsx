@@ -30,7 +30,6 @@ describe('CardClient', () => {
 
   it('should render email', () => {
     const email = screen.getByText('Email:');
-    screen.debug();
     expect(email).toBeDefined();
   });
 

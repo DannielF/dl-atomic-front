@@ -23,7 +23,6 @@ describe('Dashboard', () => {
   });
 
   it('should render the CardClient component', () => {
-    screen.debug();
     const img = screen.getByRole('img');
     const h5Email = screen.getByText(/email/i);
     const h5Balance = screen.getByText(/balance/i);

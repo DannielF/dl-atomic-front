@@ -18,7 +18,6 @@ describe('FeaturesWallet', () => {
 
   it('should render FeaturesWallet', () => {
     const featuresDiv = screen.getByRole('card-header');
-    screen.debug();
     expect(featuresDiv).toBeDefined();
   });
 

@@ -11,7 +11,9 @@
 
 ```bash
     # project
-    npm dev
-    npm run build
-    npm run lint
+    pnpm dev
+    pnpm build
+    pnpm lint
+    pnpm test:cov
+    pnpm test:ui
 ```
