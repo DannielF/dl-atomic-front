@@ -30,7 +30,7 @@
   },
   "include": [
     "src",
-    "src/setupTests.ts"
+    "./setupTest.ts"
   ],
   "references": [
     {
