@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { useEffect } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { getAuthParams } from '../../../services/GetAuthParams';
 import { clientWallet } from '../../../shared/asyncThunks/AsyncThunks';
 import { selectClientWallet } from '../../../shared/slice/WalletSlice';
@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../shared/store/hooks';
 import LogoutButton from '../../atoms/logoutButton/LogoutButton';
 import { CardBody } from '../../molecules/cardBody/CardBody';
 import styles from './CardClient.module.css';
+import { Client } from '../../../domain/entities/Client';
 
 const classCss = `card ${styles.card__client}`;
 
@@ -15,7 +16,7 @@ const classCss = `card ${styles.card__client}`;
  * @component
  * @returns {ReactElement} React Element
  */
-export const CardClient = () => {
+export const CardClient = (): ReactElement => {
   const { user, getAccessTokenSilently } = useAuth0();
   const dispatch = useAppDispatch();
 
@@ -32,7 +33,7 @@ export const CardClient = () => {
     dispatchClientWallet(user?.email ?? '');
   }, [dispatch, user?.email, getAccessTokenSilently]);
 
-  const client = useAppSelector(selectClientWallet);
+  const client: Client = useAppSelector(selectClientWallet);
 
   return (
     <div className={classCss}>
