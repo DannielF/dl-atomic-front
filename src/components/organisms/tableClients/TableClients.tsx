@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { useEffect } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { getAuthParams } from '../../../services/GetAuthParams';
 import { getWallets } from '../../../shared/asyncThunks/AsyncThunks';
 import {
@@ -14,7 +14,7 @@ import { TbodyClients } from '../../molecules/tbodyClients/TbodyClients';
  * @component
  * @returns {ReactElement} React Element
  */
-export const TableClients = () => {
+export const TableClients = (): ReactElement => {
   const { getAccessTokenSilently } = useAuth0();
   const dispatch = useAppDispatch();
 
