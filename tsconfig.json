@@ -25,8 +25,15 @@
     /* Type checking */
     "types": [
       "vitest/globals",
-      "@types/jest"
+      "@types/jest",
     ],
+    /* Paths */
+    "baseUrl": "src",
+    "paths": {
+      "test-utils": [
+        "./shared/test-utils"
+      ],
+    }
   },
   "include": [
     "src",
