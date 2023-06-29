@@ -26,6 +26,7 @@
     "types": [
       "vitest/globals",
       "@types/jest",
+      "@testing-library/jest-dom/matchers",
     ],
     /* Paths */
     "baseUrl": "src",
