@@ -1,4 +1,4 @@
-import useToken from 'config/security/hook/TokenAuth';
+import useToken from '../../../config/security/hook/TokenAuth';
 import { ReactElement } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Client } from '../../../domain/entities/Client';
@@ -26,7 +26,6 @@ export const FormTransfer = ({
   };
 }): ReactElement => {
   const dispatch = useAppDispatch();
-  const token = useToken();
 
   const {
     register,
@@ -34,15 +33,19 @@ export const FormTransfer = ({
     formState: { errors }
   } = useForm<Inputs>();
 
-  const handleTransfer: SubmitHandler<Inputs> = async (data): Promise<void> => {
-    const transaction: CreateTransaction = {
-      from: props.userWallet.email,
-      to: props.client?.email ?? '',
-      quantity: data.quantity,
-      type: TransactionType.TRANSFER,
-      clientId: props.userWallet.clientId ?? ''
+  const handleTransfer: SubmitHandler<Inputs> = (data): void => {
+    const DispatchTransaction = () => {
+      const token = useToken();
+      const transaction: CreateTransaction = {
+        from: props.userWallet.email,
+        to: props.client?.email ?? '',
+        quantity: data.quantity,
+        type: TransactionType.TRANSFER,
+        clientId: props.userWallet.clientId ?? ''
+      };
+      dispatch(makeTransferWallet({ transaction, token: token ?? '' }));
     };
-    dispatch(makeTransferWallet({ transaction, token: token ?? '' }));
+    DispatchTransaction();
     props.setState(false);
   };
 

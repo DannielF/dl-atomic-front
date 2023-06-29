@@ -23,7 +23,7 @@ export const TableClients = () => {
       try {
         const params = getAuthParams();
         const token = await getAccessTokenSilently(params);
-        dispatch(getWallets(token ?? ''));
+        dispatch(getWallets(token));
       } catch (error) {
         console.error(error);
       }
