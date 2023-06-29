@@ -1,12 +1,11 @@
-import { useAuth0 } from '@auth0/auth0-react';
+import useToken from 'config/security/hook/TokenAuth';
+import { ReactElement } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Client } from '../../../domain/entities/Client';
 import { CreateTransaction } from '../../../domain/entities/CreateTransaction';
 import { TransactionType } from '../../../domain/entities/Transaction';
-import { getAuthParams } from '../../../services/GetAuthParams';
 import { makeTransferWallet } from '../../../shared/asyncThunks/AsyncThunks';
 import { useAppDispatch } from '../../../shared/store/hooks';
-import { ReactElement } from 'react';
 
 type Inputs = {
   quantity: number;
@@ -26,8 +25,8 @@ export const FormTransfer = ({
     setState: React.Dispatch<React.SetStateAction<boolean>>;
   };
 }): ReactElement => {
-  const { getAccessTokenSilently } = useAuth0();
   const dispatch = useAppDispatch();
+  const token = useToken();
 
   const {
     register,
@@ -36,21 +35,15 @@ export const FormTransfer = ({
   } = useForm<Inputs>();
 
   const handleTransfer: SubmitHandler<Inputs> = async (data): Promise<void> => {
-    try {
-      const params = getAuthParams();
-      const token = await getAccessTokenSilently(params);
-      const transaction: CreateTransaction = {
-        from: props.userWallet.email,
-        to: props.client?.email ?? '',
-        quantity: data.quantity,
-        type: TransactionType.TRANSFER,
-        clientId: props.userWallet.clientId ?? ''
-      };
-      dispatch(makeTransferWallet({ transaction, token: token ?? '' }));
-      props.setState(false);
-    } catch (error) {
-      console.error(error);
-    }
+    const transaction: CreateTransaction = {
+      from: props.userWallet.email,
+      to: props.client?.email ?? '',
+      quantity: data.quantity,
+      type: TransactionType.TRANSFER,
+      clientId: props.userWallet.clientId ?? ''
+    };
+    dispatch(makeTransferWallet({ transaction, token: token ?? '' }));
+    props.setState(false);
   };
 
   return (
