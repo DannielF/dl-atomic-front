@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { ReactElement, useEffect } from 'react';
-import { getAuthParams } from '../../../services/GetAuthParams';
+import { getAuthParams } from '../../../config/security/GetAuthParams';
 import { getWallets } from '../../../shared/asyncThunks/AsyncThunks';
 import {
   selectClientWallet,
