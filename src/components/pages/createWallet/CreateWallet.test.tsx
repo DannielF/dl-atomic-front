@@ -18,7 +18,6 @@ describe('CreateWallet', () => {
   });
 
   it('should render the main', () => {
-    screen.debug();
     const main = screen.getByRole('main');
     expect(main).toBeInTheDocument();
   });
