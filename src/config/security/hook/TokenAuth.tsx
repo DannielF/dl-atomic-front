@@ -1,6 +1,6 @@
 import { Auth0ContextInterface, useAuth0 } from '@auth0/auth0-react';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { getAuthParams } from '../../../services/GetAuthParams';
+import { getAuthParams } from '../GetAuthParams';
 
 const getToken = (
   getAccessTokenSilently: Auth0ContextInterface['getAccessTokenSilently'],
