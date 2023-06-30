@@ -1,9 +1,7 @@
-import { cleanup, render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
 import { it, vi } from 'vitest';
 import { Client } from '../../../domain/entities/Client';
-import { store } from '../../../shared/store/Store';
 import { FormTransfer } from './FormTransfer';
+import { cleanup, render, screen } from '../../../shared/test-utils/test-utils';
 
 const data = {
   props: {
@@ -13,15 +11,9 @@ const data = {
   }
 };
 
-vi.mock('../../../shared/store/Store');
-
 describe('FormTransfer', () => {
   beforeEach(() => {
-    render(
-      <Provider store={store}>
-        <FormTransfer {...data} />
-      </Provider>
-    );
+    render(<FormTransfer {...data} />);
   });
 
   afterEach(() => {

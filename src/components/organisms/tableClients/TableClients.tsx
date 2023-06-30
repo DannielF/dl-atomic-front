@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { useEffect } from 'react';
-import { getAuthParams } from '../../../services/GetAuthParams';
+import { ReactElement, useEffect } from 'react';
+import { getAuthParams } from '../../../config/security/GetAuthParams';
 import { getWallets } from '../../../shared/asyncThunks/AsyncThunks';
 import {
   selectClientWallet,
@@ -14,7 +14,7 @@ import { TbodyClients } from '../../molecules/tbodyClients/TbodyClients';
  * @component
  * @returns {ReactElement} React Element
  */
-export const TableClients = () => {
+export const TableClients = (): ReactElement => {
   const { getAccessTokenSilently } = useAuth0();
   const dispatch = useAppDispatch();
 
@@ -23,7 +23,7 @@ export const TableClients = () => {
       try {
         const params = getAuthParams();
         const token = await getAccessTokenSilently(params);
-        dispatch(getWallets(token ?? ''));
+        dispatch(getWallets(token));
       } catch (error) {
         console.error(error);
       }

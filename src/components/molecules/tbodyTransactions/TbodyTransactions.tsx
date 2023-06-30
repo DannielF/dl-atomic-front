@@ -14,7 +14,7 @@ export const TbodyTransactions = ({ props }: { props: Transaction[] }) => {
             <td>{transaction.type}</td>
             <td>{transaction.to}</td>
             <td>{transaction.quantity}</td>
-            <td>{transaction.date}</td>
+            <td>{transaction.date?.slice(0, 10)}</td>
           </tr>
         ))
       ) : (

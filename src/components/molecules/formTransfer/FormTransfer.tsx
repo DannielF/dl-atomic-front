@@ -1,12 +1,13 @@
 import { useAuth0 } from '@auth0/auth0-react';
+import { getAuthParams } from '../../../config/security/GetAuthParams';
+import { ReactElement } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Client } from '../../../domain/entities/Client';
 import { CreateTransaction } from '../../../domain/entities/CreateTransaction';
 import { TransactionType } from '../../../domain/entities/Transaction';
-import { getAuthParams } from '../../../services/GetAuthParams';
 import { makeTransferWallet } from '../../../shared/asyncThunks/AsyncThunks';
 import { useAppDispatch } from '../../../shared/store/hooks';
-import { ReactElement } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type Inputs = {
   quantity: number;
@@ -26,8 +27,9 @@ export const FormTransfer = ({
     setState: React.Dispatch<React.SetStateAction<boolean>>;
   };
 }): ReactElement => {
-  const { getAccessTokenSilently } = useAuth0();
   const dispatch = useAppDispatch();
+  const { getAccessTokenSilently } = useAuth0();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -48,6 +50,7 @@ export const FormTransfer = ({
       };
       dispatch(makeTransferWallet({ transaction, token: token ?? '' }));
       props.setState(false);
+      navigate('/dashboard/transactions');
     } catch (error) {
       console.error(error);
     }

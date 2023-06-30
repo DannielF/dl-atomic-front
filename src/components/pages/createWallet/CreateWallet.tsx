@@ -1,6 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
+import { ReactElement } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAuthParams } from '../../../services/GetAuthParams';
+import { getAuthParams } from '../../../config/security/GetAuthParams';
 import { createClientWallet } from '../../../shared/asyncThunks/AsyncThunks';
 import { useAppDispatch } from '../../../shared/store/hooks';
 import styles from './createWallet.module.css';
@@ -12,7 +13,7 @@ const classCss = `${styles.createWallet__page}`;
  * @component
  * @returns {ReactElement} React Element
  */
-export const CreateWallet = () => {
+export const CreateWallet = (): ReactElement => {
   const { user, getAccessTokenSilently } = useAuth0();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();

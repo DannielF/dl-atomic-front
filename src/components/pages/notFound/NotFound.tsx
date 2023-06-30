@@ -13,7 +13,7 @@ export const NotFound = () => {
           alt="not-found"
         />
       </figure>
-      {isLoading && <p>Loading...</p>}
+      {!isAuthenticated && isLoading && <p>Loading...</p>}
       {isAuthenticated && !isLoading && (
         <p>
           <Link to="/dashboard/transactions">Go to dashboard</Link>
