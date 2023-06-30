@@ -1,13 +1,14 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { getAuthParams } from '../../../config/security/GetAuthParams';
+import { Signal } from '@preact/signals-react';
 import { ReactElement } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { getAuthParams } from '../../../config/security/GetAuthParams';
 import { Client } from '../../../domain/entities/Client';
 import { CreateTransaction } from '../../../domain/entities/CreateTransaction';
 import { TransactionType } from '../../../domain/entities/Transaction';
 import { makeTransferWallet } from '../../../shared/asyncThunks/AsyncThunks';
 import { useAppDispatch } from '../../../shared/store/hooks';
-import { useNavigate } from 'react-router-dom';
 
 type Inputs = {
   quantity: number;
@@ -23,8 +24,8 @@ export const FormTransfer = ({
 }: {
   props: {
     userWallet: Client;
-    client: Client | undefined;
-    setState: React.Dispatch<React.SetStateAction<boolean>>;
+    client: Client;
+    setShowForm: Signal<boolean>;
   };
 }): ReactElement => {
   const dispatch = useAppDispatch();
@@ -43,13 +44,13 @@ export const FormTransfer = ({
       const token = await getAccessTokenSilently(params);
       const transaction: CreateTransaction = {
         from: props.userWallet.email,
-        to: props.client?.email ?? '',
+        to: props.client.email,
         quantity: data.quantity,
         type: TransactionType.TRANSFER,
         clientId: props.userWallet.clientId ?? ''
       };
       dispatch(makeTransferWallet({ transaction, token: token ?? '' }));
-      props.setState(false);
+      props.setShowForm.value = false;
       navigate('/dashboard/transactions');
     } catch (error) {
       console.error(error);

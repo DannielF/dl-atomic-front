@@ -1,4 +1,5 @@
-import { ReactElement, useState } from 'react';
+import { useSignal } from '@preact/signals-react';
+import { ReactElement } from 'react';
 import { Client } from '../../../domain/entities/Client';
 import { FormTransfer } from '../formTransfer/FormTransfer';
 
@@ -12,21 +13,25 @@ export const TbodyClients = ({
 }: {
   props: { clients: Client[]; wallet: Client };
 }): ReactElement => {
-  const [selectedClient, setSelectedClient] = useState<Client>();
-  const [showForm, setShowForm] = useState<boolean>(false);
+  const showFormTransfer = useSignal<boolean>(false);
+  const setTransferClient = useSignal<Client>({
+    clientId: '',
+    email: '',
+    balance: 0
+  });
 
   const handleSelectClient = (client: Client): void => {
-    setSelectedClient(client);
-    setShowForm(true);
+    setTransferClient.value = client;
+    showFormTransfer.value = true;
   };
 
   const handleCancel = (): void => {
-    setShowForm(false);
+    showFormTransfer.value = false;
   };
 
   return (
     <tbody className="table-group-divider" role="tbody">
-      {!showForm && props.clients.length > 0 ? (
+      {!showFormTransfer.value && props.clients.length > 0 ? (
         props.clients.map((client: Client) => (
           <tr key={client.clientId} role="row">
             <td>{client.email}</td>
@@ -47,8 +52,8 @@ export const TbodyClients = ({
             <FormTransfer
               props={{
                 userWallet: props.wallet,
-                client: selectedClient,
-                setState: setShowForm
+                client: setTransferClient.value,
+                setShowForm: showFormTransfer
               }}
             />
           </td>
