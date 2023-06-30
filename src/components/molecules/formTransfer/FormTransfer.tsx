@@ -1,4 +1,5 @@
-import useToken from '../../../config/security/hook/TokenAuth';
+import { useAuth0 } from '@auth0/auth0-react';
+import { getAuthParams } from '../../../config/security/GetAuthParams';
 import { ReactElement } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Client } from '../../../domain/entities/Client';
@@ -6,6 +7,7 @@ import { CreateTransaction } from '../../../domain/entities/CreateTransaction';
 import { TransactionType } from '../../../domain/entities/Transaction';
 import { makeTransferWallet } from '../../../shared/asyncThunks/AsyncThunks';
 import { useAppDispatch } from '../../../shared/store/hooks';
+import { useNavigate } from 'react-router-dom';
 
 type Inputs = {
   quantity: number;
@@ -26,6 +28,8 @@ export const FormTransfer = ({
   };
 }): ReactElement => {
   const dispatch = useAppDispatch();
+  const { getAccessTokenSilently } = useAuth0();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -33,9 +37,10 @@ export const FormTransfer = ({
     formState: { errors }
   } = useForm<Inputs>();
 
-  const handleTransfer: SubmitHandler<Inputs> = (data): void => {
-    const DispatchTransaction = () => {
-      const token = useToken();
+  const handleTransfer: SubmitHandler<Inputs> = async (data): Promise<void> => {
+    try {
+      const params = getAuthParams();
+      const token = await getAccessTokenSilently(params);
       const transaction: CreateTransaction = {
         from: props.userWallet.email,
         to: props.client?.email ?? '',
@@ -44,9 +49,11 @@ export const FormTransfer = ({
         clientId: props.userWallet.clientId ?? ''
       };
       dispatch(makeTransferWallet({ transaction, token: token ?? '' }));
-    };
-    DispatchTransaction();
-    props.setState(false);
+      props.setState(false);
+      navigate('/dashboard/transactions');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
