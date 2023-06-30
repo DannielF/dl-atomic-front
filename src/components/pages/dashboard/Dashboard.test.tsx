@@ -1,19 +1,13 @@
-import { cleanup, render, screen } from '@testing-library/react';
-import { Dashboard } from './Dashboard';
-import { Provider } from 'react-redux';
-import { store } from '../../../shared/store/Store';
 import { MemoryRouter } from 'react-router-dom';
-
-vi.importMock('../../../shared/store/Store');
+import { cleanup, render, screen } from '../../../shared/test-utils/test-utils';
+import { Dashboard } from './Dashboard';
 
 describe('Dashboard', () => {
   beforeEach(() => {
     //Arrange
     render(
       <MemoryRouter initialEntries={['/']}>
-        <Provider store={store}>
-          <Dashboard />
-        </Provider>
+        <Dashboard />
       </MemoryRouter>
     );
   });

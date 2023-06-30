@@ -1,16 +1,10 @@
-import { cleanup, render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
+import { cleanup, render, screen } from '../../../shared/test-utils/test-utils';
 import { it } from 'vitest';
-import { store } from '../../../shared/store/Store';
 import { CardClient } from './CardClient';
 
 describe('CardClient', () => {
   beforeEach(() => {
-    render(
-      <Provider store={store}>
-        <CardClient />
-      </Provider>
-    );
+    render(<CardClient />);
   });
 
   afterEach(() => {

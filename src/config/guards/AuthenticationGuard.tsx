@@ -1,6 +1,6 @@
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import React from 'react';
-import { Loading } from '../components/molecules/loading/Loading';
+import { Loading } from '../../components/molecules/loading/Loading';
 
 /**
  * @description Authentication guard for routes

@@ -9,7 +9,7 @@ import { CreateWallet } from './components/pages/createWallet/CreateWallet';
 import { Dashboard } from './components/pages/dashboard/Dashboard';
 import { Home } from './components/pages/home/Home';
 import { NotFound } from './components/pages/notFound/NotFound';
-import { AuthenticationGuard } from './guards/AuthenticationGuard';
+import { AuthenticationGuard } from './config/guards/AuthenticationGuard';
 
 function App(): ReactElement {
   const { isLoading, error } = useAuth0();

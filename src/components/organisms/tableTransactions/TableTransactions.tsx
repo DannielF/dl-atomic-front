@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { useEffect } from 'react';
-import { getAuthParams } from '../../../services/GetAuthParams';
+import { ReactElement, useEffect } from 'react';
+import { getAuthParams } from '../../../config/security/GetAuthParams';
 import { getTransactionsWallet } from '../../../shared/asyncThunks/AsyncThunks';
 import {
   selectClientWallet,
@@ -14,7 +14,7 @@ import { TbodyTransactions } from '../../molecules/tbodyTransactions/TbodyTransa
  * @component
  * @returns {ReactElement} React Element
  */
-export const TableTransactions = () => {
+export const TableTransactions = (): ReactElement => {
   const { getAccessTokenSilently } = useAuth0();
   const client = useAppSelector(selectClientWallet);
   const dispatch = useAppDispatch();
@@ -26,8 +26,8 @@ export const TableTransactions = () => {
         const token = await getAccessTokenSilently(params);
         dispatch(
           getTransactionsWallet({
-            clientId: client.email ?? '',
-            token: token ?? ''
+            clientId: client.email,
+            token: token
           })
         );
       } catch (error) {
@@ -35,7 +35,7 @@ export const TableTransactions = () => {
       }
     };
     dispatchGetTransactionsWallet();
-  }, [client.clientId, dispatch, getAccessTokenSilently]);
+  }, [client.clientId, client.email, dispatch, getAccessTokenSilently]);
 
   const transactions = useAppSelector(selectTransactionsWallet);
   return (
